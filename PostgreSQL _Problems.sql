@@ -1,4 +1,5 @@
 Active:1748032491760 @@ localhost @ 5432 @ conservation_db
+
 CREATE DATABASE conservation_db;
 
 -- Information to demonstrate the structure, format, and content of this tables
@@ -28,12 +29,6 @@ CREATE TABLE sightings (
     sighting_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     notes TEXT
 );
-
--- SELECT * FROM rangers;
-
-SELECT * FROM species;
-
-SELECT * FROM sightings;
 
 -- ---------------------------------------------------------------
 -- Information to demonstrate the structure, format, and content of this data
@@ -144,17 +139,9 @@ INSERT INTO
     rangers (ranger_id, name, region)
 VALUES (
         4,
-        'Coastal Plains',
+        'Derek Fox',
         'Coastal Plains'
     );
-
-UPDATE rangers
-SET
-    name = 'Derek Fox'
-WHERE
-    name = 'Coastal Plains';
-
-SELECT * FROM rangers;
 
 -- problems 2
 SELECT COUNT(DISTINCT species_id) AS unique_species_count
@@ -203,7 +190,6 @@ WHERE
     ) < '1800';
 
 -- problems 8
-
 SELECT
     sighting_id,
     CASE
@@ -222,3 +208,14 @@ SELECT
         ELSE 'Evening'
     END AS time_of_day
 FROM sightings;
+
+
+-- problems 9
+DELETE FROM rangers
+WHERE
+    NOT EXISTS (
+        SELECT
+        FROM sightings
+        WHERE
+            sightings.ranger_id = rangers.ranger_id
+    );
