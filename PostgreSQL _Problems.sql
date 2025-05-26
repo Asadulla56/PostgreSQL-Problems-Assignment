@@ -1,4 +1,4 @@
--- Active: 1748032491760@@localhost@5432@conservation_db
+Active:1748032491760 @@ localhost @ 5432 @ conservation_db
 CREATE DATABASE conservation_db;
 
 -- Information to demonstrate the structure, format, and content of this tables
@@ -29,7 +29,7 @@ CREATE TABLE sightings (
     notes TEXT
 );
 
-SELECT * FROM rangers;
+-- SELECT * FROM rangers;
 
 SELECT * FROM species;
 
@@ -135,3 +135,35 @@ VALUES (
         '2024-05-18 18:30:00',
         NULL
     );
+
+-- --------------------------------------------------------------------------------
+-- Challenges that come with PostgreSQL Problems
+
+-- Problems Number 1
+INSERT INTO
+    rangers (ranger_id, name, region)
+VALUES (
+        4,
+        'Coastal Plains',
+        'Coastal Plains'
+    );
+
+UPDATE rangers
+SET
+    name = 'Derek Fox'
+WHERE
+    name = 'Coastal Plains';
+
+SELECT * FROM rangers;
+
+-- problems 2
+SELECT COUNT(DISTINCT species_id) AS unique_species_count
+FROM sightings;
+
+-- problems 3
+SELECT *
+FROM sightings
+WHERE location LIKE '%Pass%';
+
+
+
