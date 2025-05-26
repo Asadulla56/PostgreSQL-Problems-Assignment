@@ -8,7 +8,7 @@ CREATE DATABASE conservation_db;
 CREATE TABLE rangers (
     ranger_id SERIAL PRIMARY KEY,
     name VARCHAR(30) NOT NULL,
-    region VARCHAR(70) NOT NULL
+    region VARCHAR(60) NOT NULL
 );
 
 -- Species Table
@@ -148,11 +148,13 @@ SELECT COUNT(DISTINCT species_id) AS unique_species_count
 FROM sightings;
 
 -- problems 3
-SELECT * FROM sightings WHERE location LIKE '%Pass%';
+SELECT * FROM sightings 
+WHERE
+ location LIKE '%Pass%';
 
 -- problems 4
 
-SELECT r.name, COUNT(s.sighting_id) AS total_sightings
+SELECT r.name,COUNT(s.sighting_id) AS total_sightings
 FROM rangers r
     JOIN sightings s ON r.ranger_id = s.ranger_id
 GROUP BY
@@ -182,7 +184,7 @@ LIMIT 2;
 
 UPDATE species
 SET
-    conservation_status = 'Historic'
+    conservation_status ='Historic'
 WHERE
     extract(
         y
@@ -219,3 +221,7 @@ WHERE
         WHERE
             sightings.ranger_id = rangers.ranger_id
     );
+
+    SELECT * FROM rangers;
+    SELECT * FROM species;
+    SELECT * FROM sightings;
