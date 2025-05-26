@@ -1,4 +1,4 @@
-#####  PostgreSQL Important Queations
+### PostgreSQL Important Queations
 
 ### Quesatuon-1  What is PostgreSQL?
 ### Ans:
