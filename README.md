@@ -69,3 +69,7 @@ SELECT statement এ WHERE clause এর কাজ হলো নির্দি�
  Example:
  SELECT * FROM students WHERE grade = 'A';
 
+
+ ✍️ Written by: MD. ASADULLA
+🗓️ Date: 26 May 2025
+
