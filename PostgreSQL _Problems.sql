@@ -171,7 +171,6 @@ FROM rangers r
 GROUP BY
     r.name;
 
-
 -- problems 5
 
 SELECT s.common_name
@@ -183,12 +182,8 @@ WHERE
         FROM sightings
     );
 
-
 -- problems 6
-SELECT
-    common_name,
-    sighting_time,      
-    name
+SELECT c ommon_name, sighting_time, name
 FROM
     sightings
     JOIN species ON species.species_id = sightings.species_id
@@ -196,12 +191,34 @@ FROM
 ORDER BY sighting_time DESC
 LIMIT 2;
 
+-- problems 7
 
+UPDATE species
+SET
+    conservation_status = 'Historic'
+WHERE
+    extract(
+        y
+        FROM discovery_date
+    ) < '1800';
 
+-- problems 8
 
-
-
-
-
-
-
+SELECT
+    sighting_id,
+    CASE
+        WHEN EXTRACT(
+            HOUR
+            FROM sighting_time
+        ) < 12 THEN 'Morning'
+        WHEN EXTRACT(
+            HOUR
+            FROM sighting_time
+        ) >= 12
+        AND EXTRACT(
+            HOUR
+            FROM sighting_time
+        ) < 17 THEN 'Afternoon'
+        ELSE 'Evening'
+    END AS time_of_day
+FROM sightings;
