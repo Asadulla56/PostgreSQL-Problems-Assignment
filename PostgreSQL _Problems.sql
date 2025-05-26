@@ -161,9 +161,47 @@ SELECT COUNT(DISTINCT species_id) AS unique_species_count
 FROM sightings;
 
 -- problems 3
-SELECT *
-FROM sightings
-WHERE location LIKE '%Pass%';
+SELECT * FROM sightings WHERE location LIKE '%Pass%';
+
+-- problems 4
+
+SELECT r.name, COUNT(s.sighting_id) AS total_sightings
+FROM rangers r
+    JOIN sightings s ON r.ranger_id = s.ranger_id
+GROUP BY
+    r.name;
+
+
+-- problems 5
+
+SELECT s.common_name
+FROM species s
+WHERE
+    s.species_id NOT IN (
+        SELECT DISTINCT
+            species_id
+        FROM sightings
+    );
+
+
+-- problems 6
+SELECT
+    common_name,
+    sighting_time,      
+    name
+FROM
+    sightings
+    JOIN species ON species.species_id = sightings.species_id
+    JOIN rangers ON rangers.ranger_id = sightings.ranger_id
+ORDER BY sighting_time DESC
+LIMIT 2;
+
+
+
+
+
+
+
 
 
 
