@@ -158,7 +158,7 @@ FROM rangers r
 GROUP BY
     r.name;
 
--- problems 5
+-- problems-5
 
 SELECT s.common_name
 FROM species s
@@ -169,7 +169,7 @@ WHERE
         FROM sightings
     );
 
--- problems 6
+-- problems-6
 SELECT c ommon_name, sighting_time, name
 FROM
     sightings
@@ -178,7 +178,7 @@ FROM
 ORDER BY sighting_time DESC
 LIMIT 2;
 
--- problems 7
+-- problems-7
 
 UPDATE species
 SET
@@ -189,7 +189,7 @@ WHERE
         FROM discovery_date
     ) < '1800';
 
--- problems 8
+-- problems-8
 SELECT
     sighting_id,
     CASE
@@ -210,7 +210,7 @@ SELECT
 FROM sightings;
 
 
--- problems 9
+-- problems- 9
 DELETE FROM rangers
 WHERE
     NOT EXISTS (
